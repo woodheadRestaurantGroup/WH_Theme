@@ -24,13 +24,19 @@ $images = get_field('images');
         
         // Default image URL based on orientation
         $defaultUrl = $orientation === "portrait" ? $sizes['medium_large'] : $sizes['1536x1536'];
+        
+        // Create a tiny placeholder image (1x1 pixel)
+        $placeholder = 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 1 1%22%2F%3E';
         ?>
-        <figure class="image <?= $orientation ?>">
-            <img src="<?= $defaultUrl ?>" 
-                 srcset="<?= implode(', ', $srcset) ?>"
+        <figure class="image <?php echo esc_attr($orientation); ?>">
+            <img src="<?php echo esc_url($placeholder); ?>" 
+                 data-src="<?php echo esc_url($defaultUrl); ?>" 
+                 data-srcset="<?php echo esc_attr(implode(', ', $srcset)); ?>"
                  sizes="(max-width: 768px) 100vw, 50vw"
-                 alt="<?= esc_attr($image['image']['alt'] ?? '') ?>"
-                 loading="lazy">
+                 alt="<?php echo esc_attr($image['image']['alt'] ?? ''); ?>"
+                 class="lazy"
+                 width="<?php echo esc_attr($image['image']['width']); ?>"
+                 height="<?php echo esc_attr($image['image']['height']); ?>">
         </figure> 
     <?php endforeach; ?>
 </section>

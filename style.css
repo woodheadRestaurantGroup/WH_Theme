@@ -1,6 +1,33 @@
+/*
+Theme Name: WH Restaurant Theme
+Theme URI: https://woodheadrestaurantgroup.co.uk
+Author: Woodhead Restaurant Group
+Author URI: https://woodheadrestaurantgroup.co.uk
+Description: A premium WordPress theme designed specifically for restaurants, featuring modern design, performance optimization, and comprehensive schema markup for enhanced SEO.
+Version: 1.0.0
+License: Copyright Woodhead Restaurant Group
+License URI: https://woodheadrestaurantgroup.co.uk
+Text Domain: wh-restaurant
+Tags: restaurant, food, menu, responsive, modern, performance, seo
+Requires at least: 5.0
+Tested up to: 6.4
+Requires PHP: 7.4
+*/
+
 /* ==================================================================
   WOODHEAD RESTAURANT: STYLE.CSS
 ================================================================== */
+
+/* Import all modular CSS files */
+@import url('lib/css/variables.css');
+@import url('lib/css/reset.css');
+@import url('lib/css/core.css');
+@import url('lib/css/layout.css');
+@import url('lib/css/typography.css');
+@import url('lib/css/components.css');
+@import url('lib/css/lazy-loading.css');
+@import url('lib/css/media-queries.css');
+
 /** -----------------------------------------------------------------
   * VARS
 ------------------------------------------------------------------ */
@@ -473,4 +500,73 @@ nav {
     width: 100%;
     text-align: center;
   }
+}
+
+/* Lazy loading styles */
+img.lazy {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    will-change: opacity;
+}
+
+img.lazy.loaded {
+    opacity: 1;
+}
+
+/* Prevent layout shift during loading */
+.image {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--mark-background); /* Match background color */
+}
+
+.image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Loading placeholder with increased buffer */
+.image::before {
+    content: '';
+    display: block;
+    padding-top: 56.25%; /* 16:9 aspect ratio - adjust as needed */
+    background: var(--mark-background); /* Match background color */
+    transition: background-color 0.5s ease-in-out;
+}
+
+/* Add a subtle loading animation */
+.image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        var(--mark-background) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        var(--mark-background) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    opacity: 0.5;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Hide loading animation when image is loaded */
+.image.loaded::after {
+    display: none;
 }

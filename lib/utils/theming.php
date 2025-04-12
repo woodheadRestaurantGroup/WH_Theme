@@ -17,9 +17,6 @@
        $bg_accent_colour = get_field('bg_accent_colour', 'option');
        $bg_accent_colour_darken = get_field('bg_accent_colour_darken', 'option');
        $divider_image = get_field('section_divider', 'option');
-       // SET DEFAULT FONTS
-       echo "font_body: " . $font_body;
-       echo "font_head: " . $font_head;
        
 
        // Function to get font-specific styles

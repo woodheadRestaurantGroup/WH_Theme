@@ -1,0 +1,10 @@
+:root {
+  /* Colors */
+  --ins-background: #E6F7EB;
+  --del-background: #FFE6E6;
+  --mark-background: #3D3D3D;
+  --page-background: white;
+  --element-background: #F0F1F3;
+  --accent-color: var(--link-color);
+  --invalid-color: #DC2F2F;
+} 
