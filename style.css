@@ -267,6 +267,7 @@ figure.portrait {
 body {
   font-family: var(--font-body);
   font-size: var(--font-body-size);
+  font-weight: var(--font-body-weight);
   color: var(--text-color);
   background-color: var(--mark-background);
 }
@@ -334,7 +335,7 @@ h2 {
 a:not([class]) {
   color: var(--link-color);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: var(--font-body-weight);
 }
 
 /* VISITED STYLES GO HERE */
@@ -432,6 +433,7 @@ nav {
 @media only screen and (max-width: 600px) {
   .navControl {
     visibility: visible;
+    z-index: 2;
   }
   nav {
     width: 100vw;
@@ -451,6 +453,8 @@ nav {
   nav.active {
     top: 0;
     left: 0;
+    background-color: var(--bg-primary-color);
+    z-index: 1;
   }
   .navControl a.close:after {
     content: " CLOSE";
@@ -517,7 +521,7 @@ img.lazy.loaded {
 .image {
     position: relative;
     overflow: hidden;
-    background-color: var(--mark-background); /* Match background color */
+    background-color: var(--mark-background);
 }
 
 .image img {
@@ -529,44 +533,17 @@ img.lazy.loaded {
     object-fit: cover;
 }
 
-/* Loading placeholder with increased buffer */
+/* Loading placeholder */
 .image::before {
     content: '';
     display: block;
-    padding-top: 56.25%; /* 16:9 aspect ratio - adjust as needed */
-    background: var(--mark-background); /* Match background color */
+    padding-top: 56.25%;
+    background: var(--mark-background);
     transition: background-color 0.5s ease-in-out;
 }
 
-/* Add a subtle loading animation */
-.image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        var(--mark-background) 0%,
-        rgba(255, 255, 255, 0.1) 50%,
-        var(--mark-background) 100%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-    opacity: 0.5;
-}
-
-@keyframes shimmer {
-    0% {
-        background-position: 200% 0;
-    }
-    100% {
-        background-position: -200% 0;
-    }
-}
-
-/* Hide loading animation when image is loaded */
+/* Remove loading animation when image is loaded */
 .image.loaded::after {
     display: none;
+    animation: none;
 }

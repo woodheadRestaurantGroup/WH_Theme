@@ -19,11 +19,13 @@ $images = get_field('images');
         if (isset($sizes['thumbnail'])) $srcset[] = $sizes['thumbnail'] . ' 150w';
         if (isset($sizes['medium'])) $srcset[] = $sizes['medium'] . ' 300w';
         if (isset($sizes['medium_large'])) $srcset[] = $sizes['medium_large'] . ' 768w';
-        if (isset($sizes['large'])) $srcset[] = $sizes['large'] . ' 1024w';
+        //if (isset($sizes['large'])) $srcset[] = $sizes['large'] . ' 1024w';
         if (isset($sizes['1536x1536'])) $srcset[] = $sizes['1536x1536'] . ' 1536w';
         
-        // Default image URL based on orientation
-        $defaultUrl = $orientation === "portrait" ? $sizes['medium_large'] : $sizes['1536x1536'];
+        // Choose appropriate default image size based on orientation
+        $defaultUrl = $orientation === "portrait" 
+            ? ($sizes['medium_large'] ?? $sizes['medium'] ?? $sizes['thumbnail'])
+            : ($sizes['1536x1536'] ?? $sizes['medium_large'] ?? $sizes['medium']);
         
         // Create a tiny placeholder image (1x1 pixel)
         $placeholder = 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 1 1%22%2F%3E';
@@ -32,11 +34,12 @@ $images = get_field('images');
             <img src="<?php echo esc_url($placeholder); ?>" 
                  data-src="<?php echo esc_url($defaultUrl); ?>" 
                  data-srcset="<?php echo esc_attr(implode(', ', $srcset)); ?>"
-                 sizes="(max-width: 768px) 100vw, 50vw"
+                 sizes="(max-width: 768px) 100vw, <?php echo $orientation === 'portrait' ? '50vw' : '100vw'; ?>"
                  alt="<?php echo esc_attr($image['image']['alt'] ?? ''); ?>"
                  class="lazy"
                  width="<?php echo esc_attr($image['image']['width']); ?>"
-                 height="<?php echo esc_attr($image['image']['height']); ?>">
+                 height="<?php echo esc_attr($image['image']['height']); ?>"
+                 style="aspect-ratio: <?php echo esc_attr($image['image']['width']); ?>/<?php echo esc_attr($image['image']['height']); ?>;">
         </figure> 
     <?php endforeach; ?>
 </section>
