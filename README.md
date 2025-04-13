@@ -18,6 +18,74 @@ A modern, responsive WordPress theme designed specifically for restaurants. Buil
 - **Tested up to**: WordPress 6.4
 - **Requires PHP**: 7.4
 
+## Development Setup
+
+### Prerequisites
+- Node.js and npm installed
+- WordPress development environment
+
+### Installation
+1. Clone the repository
+2. Navigate to the theme directory
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Build Process
+
+#### Sass Compilation
+The theme uses Sass for CSS preprocessing with the following structure:
+```
+lib/css/
+├── _variables.scss    # Theme variables and CSS custom properties
+├── _reset.scss       # CSS reset and base styles
+├── _core.scss        # Core theme styles
+├── _layout.scss      # Layout and grid styles
+├── _typography.scss  # Typography styles
+├── _components.scss  # Component styles
+├── _lazy-loading.scss # Lazy loading styles
+├── _media-queries.scss # Responsive styles
+└── style.scss        # Main Sass file that imports all others
+```
+
+Available npm scripts:
+- `npm run sass:watch` - Watches for SCSS changes and compiles to style.css
+- `npm run sass:build` - One-time Sass compilation
+
+#### JavaScript Minification
+JavaScript files are minified using Terser:
+- `index.js` → `index.min.js`
+
+Available npm scripts:
+- `npm run js:minify` - Minifies index.js to index.min.js
+- `npm run js:watch` - Watches for JS changes and minifies automatically
+
+#### Concurrent Development
+The theme uses `concurrently` to run multiple development tasks simultaneously:
+
+```bash
+npm run watch
+```
+
+This command runs:
+- Sass compilation watcher
+- JavaScript minification watcher
+
+All in a single terminal window, with combined output.
+
+### CSS Variables
+The theme uses CSS custom properties for dynamic theming. These are set in `lib/utils/theming.php` and can be modified through the WordPress admin.
+
+### Development Workflow
+1. Start the development watchers:
+   ```bash
+   npm run watch
+   ```
+2. Make changes to SCSS or JS files
+3. Changes will automatically compile to production files
+4. Test changes in WordPress environment
+
 ## Features
 
 - 🎨 **Modern Design**: Clean, responsive layout optimized for all devices

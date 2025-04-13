@@ -43,6 +43,9 @@
             --bg-accent-color: <?= $bg_accent_colour; ?>;
             --bg-accent-color-darken: <?= $bg_accent_colour_darken; ?>;
 
+            /* Layout */
+            --nav-height: 61.21px;
+
             /* Divider Image */
             <?php if ($divider_image) : ?>
                 --divider-image: url("<?= $divider_image; ?>");

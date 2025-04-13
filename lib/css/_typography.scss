@@ -1,0 +1,186 @@
+@use 'variables' as *;
+
+// Typography Styles
+body {
+    font-family: $font-body;
+    font-size: $font-body-size;
+    font-weight: $font-body-weight;
+    color: $mark-text;
+    background-color: $mark-background;
+}
+
+.content {
+    padding: clamp(2vw, 7vw, 10vw);
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.bodyText {
+    &::after {
+        content: $divider-image;
+        display: block;
+        transform: scale(0.8);
+        text-align: center;
+        margin-top: 5rem;
+    }
+}
+
+p {
+    line-height: 1.5rem;
+    padding-bottom: 1.3rem;
+    font-family: $font-body;
+}
+
+// Setup flow spacing for typography elements
+h1, h2, h3, h4, h5, h6, p,
+label, legend, address {
+    margin-block-end: $flow-space;
+}
+
+// Double flow spacing before headings & set heading color
+h1, h2, h3, h4, h5, h6 {
+    color: $mark-text;
+    margin-block-start: calc($flow-space * 2);
+    text-transform: uppercase;
+}
+
+// Decrease space between sequential headings
+h2 + h3,
+h3 + h4,
+h4 + h5,
+h5 + h6 {
+    margin-block-start: 0;
+}
+
+// Heading typography
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-head;
+    font-weight: $font-head-weight;
+    font-size: $font-head-size;
+    padding-bottom: 1rem;
+}
+
+a:not([class]) {
+    color: $mark-accent;
+    text-decoration: none;
+    font-weight: $font-body-weight;
+}
+
+// Button and Navigation Typography
+.button, nav a, .navControl a {
+    font-family: $font-head;
+    text-decoration: none;
+    color: $mark-text !important;
+}
+
+input {
+    font-family: $font-head;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2.5rem;
+    
+    @media (max-width: 768px) {
+        font-size: 2rem;
+    }
+}
+
+h2 {
+    font-size: 2rem;
+    
+    @media (max-width: 768px) {
+        font-size: 1.75rem;
+    }
+}
+
+h3 {
+    font-size: 1.75rem;
+    
+    @media (max-width: 768px) {
+        font-size: 1.5rem;
+    }
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+h5 {
+    font-size: 1.25rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+blockquote {
+    margin: 2rem 0;
+    padding: 1rem 2rem;
+    border-left: 4px solid $mark-accent;
+    background-color: rgba($mark-accent, 0.1);
+    
+    p {
+        margin-bottom: 0;
+        font-style: italic;
+    }
+    
+    cite {
+        display: block;
+        margin-top: 1rem;
+        font-style: normal;
+    }
+}
+
+code {
+    font-family: "Courier New", Courier, monospace;
+    background-color: rgba($mark-text, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+}
+
+pre {
+    background-color: rgba($mark-text, 0.1);
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    
+    code {
+        background-color: transparent;
+        padding: 0;
+    }
+}
+
+.text {
+    &-small {
+        font-size: 0.875rem;
+    }
+    
+    &-large {
+        font-size: 1.25rem;
+    }
+    
+    &-bold {
+        font-weight: 700;
+    }
+    
+    &-italic {
+        font-style: italic;
+    }
+    
+    &-uppercase {
+        text-transform: uppercase;
+    }
+    
+    &-lowercase {
+        text-transform: lowercase;
+    }
+    
+    &-capitalize {
+        text-transform: capitalize;
+    }
+} 

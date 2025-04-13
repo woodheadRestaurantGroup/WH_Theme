@@ -1,0 +1,25 @@
+// Theme Variables
+$mark-background: var(--bg-primary-color);
+$mark-text: var(--text-color);
+$mark-accent: var(--accent-color);
+$mark-border: var(--bg-accent-color);
+$mark-shadow: rgba(0, 0, 0, 0.1);
+
+// Additional Theme Variables
+$ins-background: var(--bg-accent-color);
+$del-background: var(--bg-accent-color-darken);
+$page-background: var(--bg-primary-color);
+$element-background: var(--bg-alt-color);
+$invalid-color: var(--bg-accent-color-darken);
+
+// Typography Variables
+$font-body: var(--font-body);
+$font-head: var(--font-head);
+$font-body-size: var(--font-body-size);
+$font-body-weight: var(--font-body-weight);
+$font-head-weight: var(--font-head-weight);
+$font-head-size: var(--font-head-size);
+
+// Spacing Variables
+$flow-space: 1rem;
+$divider-image: var(--divider-image); 

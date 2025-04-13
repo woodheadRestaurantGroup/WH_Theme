@@ -112,3 +112,25 @@ document.addEventListener('DOMContentLoaded', function() {
         lazyLoad();
     }
 });
+
+// Update nav height CSS variable
+function updateNavHeight() {
+    const nav = document.querySelector('nav');
+    if (nav) {
+        const navHeight = nav.offsetHeight;
+        document.documentElement.style.setProperty('--nav-height', `${navHeight}px`);
+    }
+}
+
+// Initial update
+updateNavHeight();
+
+// Update on window resize
+window.addEventListener('resize', updateNavHeight);
+
+// Update when DOM changes (for dynamic content)
+const observer = new MutationObserver(updateNavHeight);
+observer.observe(document.body, {
+    childList: true,
+    subtree: true
+});

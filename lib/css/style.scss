@@ -1,0 +1,29 @@
+/*!
+Theme Name: WH Restaurant Theme
+Theme URI: https://woodheadrestaurantgroup.co.uk
+Author: Woodhead Restaurant Group
+Author URI: https://woodheadrestaurantgroup.co.uk
+Description: A premium WordPress theme designed specifically for restaurants, featuring modern design, performance optimization, and comprehensive schema markup for enhanced SEO.
+Version: 1.0.0
+License: Copyright Woodhead Restaurant Group
+License URI: https://woodheadrestaurantgroup.co.uk
+Text Domain: wh-restaurant
+Tags: restaurant, food, menu, responsive, modern, performance, seo
+Requires at least: 5.0
+Tested up to: 6.4
+Requires PHP: 7.4
+*/
+
+/*! ==================================================================
+  WOODHEAD RESTAURANT: STYLE.CSS
+================================================================== */
+
+// Import all modular SCSS files
+@use 'variables' as *;
+@use 'reset';
+@use 'core';
+@use 'layout';
+@use 'typography';
+@use 'components';
+@use 'lazy-loading';
+@use 'media-queries'; 

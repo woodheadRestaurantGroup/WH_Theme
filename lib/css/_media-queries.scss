@@ -1,0 +1,142 @@
+@use 'variables' as *;
+@use "sass:map";
+
+// Media Queries
+$breakpoints: (
+    'sm': 576px,
+    'md': 768px,
+    'lg': 992px,
+    'xl': 1200px
+);
+
+@mixin respond-to($breakpoint) {
+    @if map.has-key($breakpoints, $breakpoint) {
+        @media (min-width: map.get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    } @else {
+        @warn "Unknown breakpoint: #{$breakpoint}";
+    }
+}
+
+// Responsive Grid
+.grid {
+    display: grid;
+    gap: 1rem;
+    
+    @include respond-to('sm') {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include respond-to('md') {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @include respond-to('lg') {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+// Responsive Layout
+@media only screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .content {
+        padding: 5vw;
+    }
+    
+    .images {
+        padding: 0;
+    }
+    
+    .bodyText {
+        &::after {
+            margin-top: 2rem;
+        }
+    }
+    
+    // Responsive Typography
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.25rem;
+    }
+    
+    // Responsive Images
+    figure {
+        margin: 0;
+        padding: 0;
+        
+        &.landscape {
+            width: 100%;
+            height: 25vh;
+        }
+        
+        &.portrait {
+            width: 50%;
+            height: 25vh;
+        }
+    }
+    
+    // Responsive Navigation
+    .nav {
+        display: none;
+    }
+    
+    .mobile-nav {
+        display: block;
+    }
+}
+
+// Responsive Layout
+.container {
+    padding: 0 1rem;
+    
+    @include respond-to('sm') {
+        padding: 0 1.5rem;
+    }
+    
+    @include respond-to('md') {
+        padding: 0 2rem;
+    }
+}
+
+// Responsive Navigation
+.nav {
+    display: none;
+    
+    @include respond-to('md') {
+        display: flex;
+    }
+}
+
+.mobile-nav {
+    display: block;
+    
+    @include respond-to('md') {
+        display: none;
+    }
+}
+
+// Responsive Images
+.image {
+    &-portrait {
+        @include respond-to('md') {
+            grid-column: span 2;
+        }
+    }
+    
+    &-landscape {
+        @include respond-to('md') {
+            grid-row: span 2;
+        }
+    }
+} 

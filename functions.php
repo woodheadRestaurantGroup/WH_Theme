@@ -21,7 +21,7 @@ function wh_load_scripts()
 	wp_enqueue_style( 'screen' );
 
 	// Register and enqueue scripts with version
-	wp_register_script( 'wh-script', get_template_directory_uri() . '/index.js', array(), $js_version, true );
+	wp_register_script( 'wh-script', get_template_directory_uri() . '/index.min.js', array(), $js_version, true );
 	wp_enqueue_script( 'wh-script' );
 
 	wp_localize_script( 'wh-script', 'ajax_object', array( 

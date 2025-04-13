@@ -1,0 +1,35 @@
+{
+  "name": "wh_theme",
+  "version": "1.0.0",
+  "description": "A modern, responsive WordPress theme designed specifically for restaurants. Built with performance, SEO, and user experience in mind.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass:watch": "sass --watch lib/css/style.scss:style.css --style compressed --no-source-map",
+    "sass:build": "sass lib/css/style.scss:style.css --style compressed --no-source-map",
+    "js:minify": "terser index.js -o index.min.js -c -m",
+    "js:watch": "chokidar \"index.js\" -c \"npm run js:minify\"",
+    "watch": "concurrently \"npm run sass:watch\" \"npm run js:watch\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woodheadRestaurantGroup/WH_Theme.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/woodheadRestaurantGroup/WH_Theme/issues"
+  },
+  "homepage": "https://github.com/woodheadRestaurantGroup/WH_Theme#readme",
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^8.2.2",
+    "sass": "^1.71.0",
+    "terser": "^5.28.1"
+  }
+}
