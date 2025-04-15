@@ -65,7 +65,7 @@ Available npm scripts:
 The theme uses `concurrently` to run multiple development tasks simultaneously:
 
 ```bash
-npm run watch
+npm run watch 
 ```
 
 This command runs:
@@ -212,3 +212,4 @@ This theme is copyright Woodhead Restaurant Group
 - Menu management
 - Schema.org markup
 - Performance optimizations 
+
