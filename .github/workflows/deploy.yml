@@ -1,0 +1,23 @@
+name: Deploy Theme
+
+on:
+  push:
+    branches:
+      - staging-site-cp
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to appropriate environment
+        run: |
+          if [[ $GITHUB_REF == "refs/heads/staging-site-cp" ]]; then
+            echo "Deploying to CP staging site..."
+            ./deploy.sh staging-site-cp
+          else
+            echo "No matching branch. Skipping deployment."
+          fi
