@@ -14,7 +14,9 @@ if [ "$1" == "prod" ]; then
 elif [ "$1" == "staging-site-cp" ]; then
   echo "Deploying to CP staging site"
 
-  sshpass -p "$CP_SFTP_PASS_STAGING" rsync -avz --delete \
-    -e "ssh -o StrictHostKeyChecking=no" \
-    $THEME_DIR/ $CP_SFTP_USER_STAGING@$CP_SFTP_HOST_STAGING:/wp-content/themes/WH_THEME/
+  lftp -u "$CP_SFTP_USER_STAGING","$CP_SFTP_PASS_STAGING" sftp://$CP_SFTP_HOST_STAGING <<EOF
+  mirror -R --delete --verbose $THEME_DIR /wp-content/themes/WH_THEME
+  quit
+EOF
+
 fi
