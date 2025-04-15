@@ -2,7 +2,7 @@
 
 set -e
 
-THEME_DIR="WH_THEME"
+THEME_DIR="."
 
 if [ "$1" == "prod" ]; then
   echo "Deploying to PROD site 1"
