@@ -13,6 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Make deploy.sh executable
+        run: chmod +x deploy.sh
+
       - name: Deploy to appropriate environment
         run: |
           if [[ $GITHUB_REF == "refs/heads/staging-site-cp" ]]; then
