@@ -16,10 +16,16 @@ jobs:
       - name: Make deploy.sh executable
         run: chmod +x deploy.sh
 
+      - name: Print environment variables
+        run: |
+          echo "CP_SFTP_HOST_STAGING is: ${CP_SFTP_HOST_STAGING:-NOT SET}"
+          echo "CP_SFTP_USER_STAGING is: ${CP_SFTP_USER_STAGING:-NOT SET}"
+          echo "CP_SFTP_PASS_STAGING is: ${CP_SFTP_PASS_STAGING:+SET}"  # don't echo password
+
       - name: Deploy to appropriate environment
         run: |
           if [[ $GITHUB_REF == "refs/heads/staging-site-cp" ]]; then
-            echo "Deploying to CP staging site..."
+            echo "Deploying to CP staging site..."            
             ./deploy.sh staging-site-cp
           else
             echo "No matching branch. Skipping deployment."

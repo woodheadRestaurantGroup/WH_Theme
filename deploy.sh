@@ -13,10 +13,6 @@ if [ "$1" == "prod" ]; then
   # Repeat for other prod sites
 elif [ "$1" == "staging-site-cp" ]; then
   echo "Deploying to CP staging site"
-  
-  echo "CP_SFTP_HOST_STAGING is: ${CP_SFTP_HOST_STAGING:-NOT SET}"
-  echo "CP_SFTP_USER_STAGING is: ${CP_SFTP_USER_STAGING:-NOT SET}"
-  echo "CP_SFTP_PASS_STAGING is: ${CP_SFTP_PASS_STAGING:+SET}"  # don't echo password
 
   sshpass -p "$CP_SFTP_PASS_STAGING" rsync -avz --delete \
     -e "ssh -o StrictHostKeyChecking=no" \
