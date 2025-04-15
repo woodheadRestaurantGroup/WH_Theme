@@ -19,6 +19,16 @@ jobs:
       - name: Install lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
 
+      - name: Debug Secrets
+        run: |
+          echo "CP_SFTP_HOST_STAGING is: ${CP_SFTP_HOST_STAGING:-NOT SET}"
+          echo "CP_SFTP_USER_STAGING is: ${CP_SFTP_USER_STAGING:-NOT SET}"
+          echo "CP_SFTP_PASS_STAGING is: ${CP_SFTP_PASS_STAGING:+SET}"
+        env:
+          CP_SFTP_HOST_STAGING: ${{ secrets.CP_SFTP_HOST_STAGING }}
+          CP_SFTP_USER_STAGING: ${{ secrets.CP_SFTP_USER_STAGING }}
+          CP_SFTP_PASS_STAGING: ${{ secrets.CP_SFTP_PASS_STAGING }}
+
       - name: Deploy to appropriate environment
         env:
           CP_SFTP_HOST_STAGING: ${{ secrets.CP_SFTP_HOST_STAGING }}
