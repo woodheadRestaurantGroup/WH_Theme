@@ -148,6 +148,10 @@ a {
     }
 }
 
+a.navLink:hover, a.button:hover {
+    text-decoration: none !important;
+}
+
 // Remove default image styles
 img {
     max-width: 100%;

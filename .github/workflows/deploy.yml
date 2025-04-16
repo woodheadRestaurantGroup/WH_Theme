@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - staging-site-cp
+      - main
 
 jobs:
   deploy:
@@ -19,25 +20,24 @@ jobs:
       - name: Install lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
 
-      - name: Debug Secrets
-        run: |
-          echo "CP_SFTP_HOST_STAGING is: ${CP_SFTP_HOST_STAGING:-NOT SET}"
-          echo "CP_SFTP_USER_STAGING is: ${CP_SFTP_USER_STAGING:-NOT SET}"
-          echo "CP_SFTP_PASS_STAGING is: ${CP_SFTP_PASS_STAGING:+SET}"
-        env:
-          CP_SFTP_HOST_STAGING: ${{ secrets.CP_SFTP_HOST_STAGING }}
-          CP_SFTP_USER_STAGING: ${{ secrets.CP_SFTP_USER_STAGING }}
-          CP_SFTP_PASS_STAGING: ${{ secrets.CP_SFTP_PASS_STAGING }}
-
       - name: Deploy to appropriate environment
         env:
           CP_SFTP_HOST_STAGING: ${{ secrets.CP_SFTP_HOST_STAGING }}
           CP_SFTP_USER_STAGING: ${{ secrets.CP_SFTP_USER_STAGING }}
           CP_SFTP_PASS_STAGING: ${{ secrets.CP_SFTP_PASS_STAGING }}
+          CP_SFTP_HOST_PROD: ${{ secrets.CP_SFTP_HOST_PROD }}
+          CP_SFTP_USER_PROD: ${{ secrets.CP_SFTP_USER_PROD }}
+          CP_SFTP_PASS_PROD: ${{ secrets.CP_SFTP_PASS_PROD }}
+          CP_SFTP_HOST_PROD_2: ${{ secrets.CP_SFTP_HOST_PROD_2 }}
+          CP_SFTP_USER_PROD_2: ${{ secrets.CP_SFTP_USER_PROD_2 }}
+          CP_SFTP_PASS_PROD_2: ${{ secrets.CP_SFTP_PASS_PROD_2 }}
         run: |
           if [[ $GITHUB_REF == "refs/heads/staging-site-cp" ]]; then
             echo "Deploying to CP staging site..."            
             ./deploy.sh staging-site-cp
+          elif [[ $GITHUB_REF == "refs/heads/main" ]]; then
+            echo "Deploying to production sites..."
+            ./deploy.sh production-sites
           else
             echo "No matching branch. Skipping deployment."
           fi
