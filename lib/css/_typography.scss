@@ -69,7 +69,7 @@ a:not([class]) {
 // Button and Navigation Typography
 .button, nav a, .navControl a {
     font-family: $font-head;
-    text-decoration: none;
+    text-decoration: none !important;
     color: $mark-text !important;
 }
 
