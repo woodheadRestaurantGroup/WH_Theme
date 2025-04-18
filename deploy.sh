@@ -7,19 +7,19 @@ THEME_DIR="."
 if [ "$1" == "production-sites" ]; then
   echo "Deploying to Clipstone PROD site"
   lftp -e "set sftp:connect-program 'ssh -oStrictHostKeyChecking=no'; mirror -R --delete --verbose $THEME_DIR /home/client_181ef524f7_96639/html/wp-content/themes/WH_THEME; quit" \
-  -u "$CP_SFTP_USER_PROD","$CP_SFTP_PASS_PROD" sftp://$CP_SFTP_HOST_PROD
+  -u "$CP_SFTP_USER_PRODUCTION","$CP_SFTP_PASS_PRODUCTION" sftp://$CP_SFTP_HOST_PRODUCTION
 
   echo "Deploying to Quality Wines PROD site"
   lftp -e "set sftp:connect-program 'ssh -oStrictHostKeyChecking=no'; mirror -R --delete --verbose $THEME_DIR /home/client_ec232e5d38_96653/html/wp-content/themes/WH_THEME; quit" \
-  -u "$QW_SFTP_USER_PROD","$QW_SFTP_PASS_PROD" sftp://$QW_SFTP_HOST_PROD
+  -u "$QW_SFTP_USER_PRODUCTION","$QW_SFTP_PASS_PRODUCTION" sftp://$QW_SFTP_HOST_PRODUCTION
 
   echo "Deploying to 64 Goodge Street PROD site"
   lftp -e "set sftp:connect-program 'ssh -oStrictHostKeyChecking=no'; mirror -R --delete --verbose $THEME_DIR /home/client_9bd54dd0c5_96557/html/wp-content/themes/WH_THEME; quit" \
-  -u "$GS_SFTP_USER_PROD","$GS_SFTP_PASS_PROD" sftp://$GS_SFTP_HOST_PROD
+  -u "$GS_SFTP_USER_PRODUCTION","$GS_SFTP_PASS_PRODUCTION" sftp://$GS_SFTP_HOST_PRODUCTION
 
   echo " Deploying to WH PROD site"
   lftp -e "set sftp:connect-program 'ssh -oStrictHostKeyChecking=no'; mirror -R --delete --verbose $THEME_DIR /home/client_9b38867d2_96665/html/wp-content/themes/WH_THEME; quit" \
-  -u "$WH_SFTP_USER_PROD","$WH_SFTP_PASS_PROD" sftp://$WH_SFTP_HOST_PROD
+  -u "$WH_SFTP_USER_PRODUCTION","$WH_SFTP_PASS_PRODUCTION" sftp://$WH_SFTP_HOST_PRODUCTION
 
   # Repeat for other prod sites
 elif [ "$1" == "staging-site-cp" ]; then
