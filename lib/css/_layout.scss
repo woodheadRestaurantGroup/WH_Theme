@@ -135,6 +135,10 @@ section {
     flex: 0 0 50%;
 }
 
+section.images {
+    overflow: hidden;
+}
+
 .first {
     margin-top: calc(-1 * var(--nav-height));
 

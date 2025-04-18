@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - staging-site-cp
+      - staging
       - main
 
 jobs:
@@ -22,19 +23,52 @@ jobs:
 
       - name: Deploy to appropriate environment
         env:
+          # CP STAGING VARS
           CP_SFTP_HOST_STAGING: ${{ secrets.CP_SFTP_HOST_STAGING }}
           CP_SFTP_USER_STAGING: ${{ secrets.CP_SFTP_USER_STAGING }}
           CP_SFTP_PASS_STAGING: ${{ secrets.CP_SFTP_PASS_STAGING }}
-          CP_SFTP_HOST_PROD: ${{ secrets.CP_SFTP_HOST_PROD }}
-          CP_SFTP_USER_PROD: ${{ secrets.CP_SFTP_USER_PROD }}
-          CP_SFTP_PASS_PROD: ${{ secrets.CP_SFTP_PASS_PROD }}
-          CP_SFTP_HOST_PROD_2: ${{ secrets.CP_SFTP_HOST_PROD_2 }}
-          CP_SFTP_USER_PROD_2: ${{ secrets.CP_SFTP_USER_PROD_2 }}
-          CP_SFTP_PASS_PROD_2: ${{ secrets.CP_SFTP_PASS_PROD_2 }}
+          
+          # CP PRODUCTION VARS
+          CP_SFTP_HOST_PRODUCTION: ${{ secrets.CP_SFTP_HOST_PRODUCTION }}
+          CP_SFTP_USER_PRODUCTION: ${{ secrets.CP_SFTP_USER_PRODUCTION }}
+          CP_SFTP_PASS_PRODUCTION: ${{ secrets.CP_SFTP_PASS_PRODUCTION }}     
+          
+          # QW STAGING VARS
+          QW_SFTP_HOST_STAGING: ${{ secrets.QW_SFTP_HOST_STAGING }}
+          QW_SFTP_USER_STAGING: ${{ secrets.QW_SFTP_USER_STAGING }}
+          QW_SFTP_PASS_STAGING: ${{ secrets.QW_SFTP_PASS_STAGING }}
+          
+          # QW PRODUCTION VARS
+          QW_SFTP_HOST_PRODUCTION: ${{ secrets.QW_SFTP_HOST_PRODUCTION }}
+          QW_SFTP_USER_PRODUCTION: ${{ secrets.QW_SFTP_USER_PRODUCTION }}
+          QW_SFTP_PASS_PRODUCTION: ${{ secrets.QW_SFTP_PASS_PRODUCTION }}
+          
+          # WH STAGING VARS
+          WH_SFTP_HOST_STAGING: ${{ secrets.WH_SFTP_HOST_STAGING }}
+          WH_SFTP_USER_STAGING: ${{ secrets.WH_SFTP_USER_STAGING }}
+          WH_SFTP_PASS_STAGING: ${{ secrets.WH_SFTP_PASS_STAGING }}
+          
+          # WH PRODUCTION VARS
+          WH_SFTP_HOST_PRODUCTION: ${{ secrets.WH_SFTP_HOST_PRODUCTION }}
+          WH_SFTP_USER_PRODUCTION: ${{ secrets.WH_SFTP_USER_PRODUCTION }}
+          WH_SFTP_PASS_PRODUCTION: ${{ secrets.WH_SFTP_PASS_PRODUCTION }}
+          
+          # GS STAGING VARS
+          GS_SFTP_HOST_STAGING: ${{ secrets.GS_SFTP_HOST_STAGING }}
+          GS_SFTP_USER_STAGING: ${{ secrets.GS_SFTP_USER_STAGING }}
+          GS_SFTP_PASS_STAGING: ${{ secrets.GS_SFTP_PASS_STAGING }}
+          
+          # GS PRODUCTION VARS
+          GS_SFTP_HOST_PRODUCTION: ${{ secrets.GS_SFTP_HOST_PRODUCTION }}
+          GS_SFTP_USER_PRODUCTION: ${{ secrets.GS_SFTP_USER_PRODUCTION }}
+          GS_SFTP_PASS_PRODUCTION: ${{ secrets.GS_SFTP_PASS_PRODUCTION }}
         run: |
           if [[ $GITHUB_REF == "refs/heads/staging-site-cp" ]]; then
             echo "Deploying to CP staging site..."            
             ./deploy.sh staging-site-cp
+          elif [[ $GITHUB_REF == "refs/heads/staging" ]]; then
+            echo "Deploying to staging sites..."
+            ./deploy.sh staging-sites
           elif [[ $GITHUB_REF == "refs/heads/main" ]]; then
             echo "Deploying to production sites..."
             ./deploy.sh production-sites
