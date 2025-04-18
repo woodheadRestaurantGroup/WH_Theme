@@ -5,7 +5,7 @@ on:
     branches:
       - staging-site-cp
       - staging
-      - main
+      - master
 
 jobs:
   deploy:
@@ -69,7 +69,7 @@ jobs:
           elif [[ $GITHUB_REF == "refs/heads/staging" ]]; then
             echo "Deploying to staging sites..."
             ./deploy.sh staging-sites
-          elif [[ $GITHUB_REF == "refs/heads/main" ]]; then
+          elif [[ $GITHUB_REF == "refs/heads/master" ]]; then
             echo "Deploying to production sites..."
             ./deploy.sh production-sites
           else
