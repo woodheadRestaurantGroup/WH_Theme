@@ -24,7 +24,6 @@ if [ "$1" == "production-sites" ]; then
   # Repeat for other prod sites
 elif [ "$1" == "staging-site-cp" ]; then
   echo "Deploying to CP staging site"
-
   lftp -e "set sftp:connect-program 'ssh -oStrictHostKeyChecking=no'; mirror -R --delete --verbose $THEME_DIR /home/client_f4658e9875_102144/html/wp-content/themes/WH_THEME; quit" \
   -u "$CP_SFTP_USER_STAGING","$CP_SFTP_PASS_STAGING" sftp://$CP_SFTP_HOST_STAGING
 
