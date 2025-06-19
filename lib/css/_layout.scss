@@ -174,10 +174,15 @@ nav, .navControl {
     display: flex;
     flex-flow: row wrap;
     gap: 2rem;
+    z-index: 2;
     justify-content: space-evenly;
     padding: 1.5rem 2rem;
     background-color: $page-background;
     border-bottom: 1px solid $mark-border;
+}
+
+#navMenu {
+    z-index: 1;
 }
 
 nav {
