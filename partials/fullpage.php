@@ -20,6 +20,9 @@ if ( $loop->have_posts() ) :
 			elseif ( $template == 'page-templates/menu.php' ) :
 				// MENU SECTION
 				get_template_part( 'partials/menu_section' );
+			elseif ( $template == 'page-templates/careers.php' ) :
+				// CAREERS SECTION
+				get_template_part( 'partials/careers_section' );
 			else :
 				// GENERIC SECTION
 				get_template_part( 'partials/block_section' );
